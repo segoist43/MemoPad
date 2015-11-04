@@ -25,9 +25,10 @@
     Private Sub mnuOpen_Click(sender As Object, e As EventArgs) Handles mnuOpen.Click
         Dim readFile As IO.StreamReader
 
-        '열기 대화 상자 환경 설정
+        '열기 대화 상자를 설정합니다.
         OpenDlg.Title = "파일 불러오기"
         OpenDlg.InitialDirectory = ""
+        OpenDlg.FileName = argFilename
         OpenDlg.Filter = "텍스트 문서 | *.txt, *.rtf"
 
         '대화 상자 결과가 OK 일 때
