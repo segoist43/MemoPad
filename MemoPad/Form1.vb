@@ -40,4 +40,32 @@
             readFile = Nothing '메모리를 해제합니다.
         End If
     End Sub
+
+    Private Sub mnuSave_Click(sender As Object, e As EventArgs) Handles mnuSave.Click
+        Dim writeFile As IO.StreamWriter
+
+        If Trim(argFilename) = "" Then '신규 파일인 경우 파일명을 확인하고 저장합니다.
+            '저장 대화 상자를 설정합니다.
+            SaveDlg.Title = "파일 저장하기"
+            SaveDlg.InitialDirectory = ""
+            SaveDlg.FileName = argFilename
+            SaveDlg.Filter = "텍스트 문서 | *.txt, *.rtf"
+
+            '대화 상자 결과가 OK 일 때
+            If SaveDlg.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                argFilename = SaveDlg.FileName
+                writeFile = New IO.StreamWriter(SaveDlg.FileName, False, System.Text.Encoding.Default)
+                writeFile.Write(rtxMemo.Text) 'rtxMemo 의 텍스트를 저장합니다.
+                writeFile.Close() '파일의 I/O 를 닫습니다.
+                writeFile = Nothing ' 메모리를 해제합니다.
+                strModify = False '변경 여부를 초기화합니다.
+            End If
+        Else '기존 파일인 경우 무조건 저장합니다.
+            writeFile = New IO.StreamWriter(SaveDlg.FileName, False, System.Text.Encoding.Default)
+            writeFile.Write(rtxMemo.Text) 'rtxMemo 의 텍스트를 저장합니다.
+            writeFile.Close() '파일의 I/O 를 닫습니다.
+            writeFile = Nothing ' 메모리를 해제합니다.
+            strModify = False '변경 여부를 초기화합니다.
+        End If
+    End Sub
 End Class
