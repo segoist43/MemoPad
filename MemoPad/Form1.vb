@@ -103,4 +103,13 @@
             End
         End If
     End Sub
+
+    Private Sub rtxMemo_TextChanged(sender As Object, e As EventArgs) Handles rtxMemo.TextChanged
+        If Fileopen = False Then '파일 Open에 의한 변경이 아닐 경우
+            strModify = True
+        Else '파일 Open에 의한 변경인 경우
+            strModify = False
+            Fileopen = False
+        End If
+    End Sub
 End Class
