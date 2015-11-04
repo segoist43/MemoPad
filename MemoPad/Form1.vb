@@ -21,4 +21,23 @@
             strModify = False '변경 여부를 초기화합니다.
         End If
     End Sub
+
+    Private Sub mnuOpen_Click(sender As Object, e As EventArgs) Handles mnuOpen.Click
+        Dim readFile As IO.StreamReader
+
+        '열기 대화 상자 환경 설정
+        OpenDlg.Title = "파일 불러오기"
+        OpenDlg.InitialDirectory = ""
+        OpenDlg.Filter = "텍스트 문서 | *.txt, *.rtf"
+
+        '대화 상자 결과가 OK 일 때
+        If OpenDlg.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+            argFilename = OpenDlg.FileName
+            readFile = New IO.StreamReader(OpenDlg.FileName, System.Text.Encoding.Default)
+            Fileopen = True '파일의 Open 여부를 설정합니다.
+            rtxMemo.Text = readFile.ReadToEnd '파일을 읽습니다.
+            readFile.Close() '파일의 I/O 를 닫습니다.
+            readFile = Nothing '메모리를 해제합니다.
+        End If
+    End Sub
 End Class
