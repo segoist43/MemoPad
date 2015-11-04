@@ -7,7 +7,7 @@
         Dim ans As Integer 'MsgBox의 결과값을 저장할 정수형 변수를 생성합니다.
 
         If strModify = True Then '메모장에 변경 사항이 있으면
-            ans = MsgBox("저장하지 않고 새로 만드시겠습니까?", MsgBoxStyle.YesNo, "새로 만들기")
+            ans = MsgBox("저장하지 않고 새로 만드시겠습니까?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "새로 만들기")
             If ans = MsgBoxResult.No Then 'No 버튼 선택 시
                 Exit Sub
             ElseIf ans = MsgBoxResult.Yes Then 'Yes 버튼 선택 시
@@ -86,6 +86,21 @@
             writeFile.Close() '파일의 I/O 를 닫습니다.
             writeFile = Nothing ' 메모리를 해제합니다.
             strModify = False '변경 여부를 초기화합니다.
+        End If
+    End Sub
+
+    Private Sub mnuExit_Click(sender As Object, e As EventArgs) Handles mnuExit.Click
+        Dim Ans As Integer '메세지 결과 값을 저장하는 변수를 생성합니다.
+
+        If strModify = True Then '메모장에 변경사항이 있으면
+            Ans = MsgBox("저장하지 않고 종료하시겠습니까?", MsgBoxStyle.OkCancel + MsgBoxStyle.Question, "종료")
+            If Ans = MsgBoxResult.Cancel Then
+                Exit Sub
+            ElseIf Ans = MsgBoxResult.Ok Then
+                End
+            End If
+        Else
+            End
         End If
     End Sub
 End Class
