@@ -113,4 +113,9 @@
             Fileopen = False
         End If
     End Sub
+
+    Private Sub mnuFont_Click(sender As Object, e As EventArgs) Handles mnuFont.Click
+        FontDlg.ShowDialog()
+        rtxMemo.Font = FontDlg.Font
+    End Sub
 End Class

@@ -62,6 +62,7 @@ Partial Class frmMain
         Me.ConMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.OpenDlg = New System.Windows.Forms.OpenFileDialog()
         Me.SaveDlg = New System.Windows.Forms.SaveFileDialog()
+        Me.FontDlg = New System.Windows.Forms.FontDialog()
         Me.mnuMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -253,13 +254,13 @@ Partial Class frmMain
         '
         Me.mnuWordWrap.CheckOnClick = True
         Me.mnuWordWrap.Name = "mnuWordWrap"
-        Me.mnuWordWrap.Size = New System.Drawing.Size(137, 22)
+        Me.mnuWordWrap.Size = New System.Drawing.Size(152, 22)
         Me.mnuWordWrap.Text = "자동 줄바꿈"
         '
         'mnuFont
         '
         Me.mnuFont.Name = "mnuFont"
-        Me.mnuFont.Size = New System.Drawing.Size(137, 22)
+        Me.mnuFont.Size = New System.Drawing.Size(152, 22)
         Me.mnuFont.Text = "글꼴..."
         '
         'mnuView
@@ -273,7 +274,7 @@ Partial Class frmMain
         '
         Me.mnuStatBar.CheckOnClick = True
         Me.mnuStatBar.Name = "mnuStatBar"
-        Me.mnuStatBar.Size = New System.Drawing.Size(140, 22)
+        Me.mnuStatBar.Size = New System.Drawing.Size(152, 22)
         Me.mnuStatBar.Text = "상태 바 보기"
         '
         'HelpToolStripMenuItem
@@ -379,4 +380,5 @@ Partial Class frmMain
     Friend WithEvents ConMenu As ContextMenuStrip
     Friend WithEvents OpenDlg As OpenFileDialog
     Friend WithEvents SaveDlg As SaveFileDialog
+    Friend WithEvents FontDlg As FontDialog
 End Class
