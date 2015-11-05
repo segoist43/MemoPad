@@ -1,4 +1,5 @@
 ﻿Public Class frmMain
+    Public strText As String 'rtxMemo 의 텍스트를 임시로 저장하는 변수를 생성합니다.
     Dim argFilename As String '파일명을 보관하는 변수를 생성합니다.
     Dim strModify As Boolean = False 'rtxMemo 의 텍스트 변경 여부를 확인하는 변수를 생성합니다.
     Dim Fileopen As Boolean = False '파일의 Open 여부를 확인하는 변수를 생성합니다.
@@ -106,6 +107,10 @@
     End Sub
 
     Private Sub rtxMemo_TextChanged(sender As Object, e As EventArgs) Handles rtxMemo.TextChanged
+        'rtxMemo 의 텍스트가 변경되었을 경우
+        mnuCut.Enabled = True
+        mnuCopy.Enabled = True
+
         If Fileopen = False Then '파일 Open에 의한 변경이 아닐 경우
             strModify = True
         Else '파일 Open에 의한 변경인 경우
@@ -115,7 +120,30 @@
     End Sub
 
     Private Sub mnuFont_Click(sender As Object, e As EventArgs) Handles mnuFont.Click
-        FontDlg.ShowDialog()
-        rtxMemo.Font = FontDlg.Font
+        FontDlg.ShowDialog() '글꼴 대화 상자를 띄웁니다.
+        rtxMemo.Font = FontDlg.Font 'rtxMemo 의 텍스트 글꼴을 대화상자의 설정으로 변경합니다.
+    End Sub
+
+    Private Sub mnuCut_Click(sender As Object, e As EventArgs) Handles mnuCut.Click
+        strText = rtxMemo.SelectedText '선택된 텍스트를 srtText 에 저장합니다.
+        rtxMemo.SelectedText = "" '선택된 항목을 지웁니다.
+        mnuPaste.Enabled = True 'mnuPaste 항목을 활성화합니다.
+        rtxMemo.Focus() '커서를 rtxMemo 로 이동합니다.
+    End Sub
+
+    Private Sub mnuCopy_Click(sender As Object, e As EventArgs) Handles mnuCopy.Click
+        strText = rtxMemo.SelectedText '선택된 텍스트를 srtText 에 저장합니다.
+        mnuPaste.Enabled = True 'mnuPaste 항목을 활성화합니다.
+        rtxMemo.Focus() '커서를 rtxMemo 로 이동합니다.
+    End Sub
+
+    Private Sub mnuPaste_Click(sender As Object, e As EventArgs) Handles mnuPaste.Click
+        rtxMemo.SelectedText = strText 'strText 에 저장되었던 텍스트를 rtxMemo 에 붙여넣습니다.
+        mnuPaste.Enabled = True 'mnuPaste 항목을 활성화합니다.
+        rtxMemo.Focus() '커서를 rtxMemo 로 이동합니다.
+    End Sub
+
+    Private Sub mnuSelectAll_Click(sender As Object, e As EventArgs) Handles mnuSelectAll.Click
+        rtxMemo.SelectAll() 'rtxMemo 의 텍스트를 모두 선택합니다.
     End Sub
 End Class
